@@ -54,5 +54,8 @@ resource "polaris_cdm_registration" "cces_azure_registration" {
   admin_password          = var.admin_password
   cluster_name            = var.cluster_name
   cluster_node_ip_address = local.cluster_node_ips[0]
-  depends_on              = [time_sleep.wait_for_nodes_to_boot]
+  depends_on = concat(
+    [time_sleep.wait_for_nodes_to_boot],
+    var.skip_bootstrap_status_check ? [] : [polaris_cdm_bootstrap_cces_azure.bootstrap_cces_azure[0]]
+  )
 }

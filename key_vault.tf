@@ -47,6 +47,11 @@ resource "azurerm_key_vault_secret" "cc_private_ssh_key" {
   value        = tls_private_key.cc-key.private_key_pem
   content_type = "SSH Key"
   key_vault_id = azurerm_key_vault.cc_key_vault.id
+
+  depends_on = [
+    azurerm_key_vault.cc_key_vault,
+    azurerm_key_vault_access_policy.cc_key_vault_access_policy
+  ]
 }
 
 resource "azurerm_ssh_public_key" "cc_public_ssh_key" {
