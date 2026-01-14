@@ -216,6 +216,12 @@ variable "timeout" {
   default     = "4m"
 }
 
+variable "skip_bootstrap_status_check" {
+  description = "Skip the bootstrap status check during state refresh. Set to true if the bootstrap status check is timing out when trying to reach nodes."
+  type        = bool
+  default     = false
+}
+
 check "deprecations" {
   assert {
     condition     = var.azure_subscription_id == null
