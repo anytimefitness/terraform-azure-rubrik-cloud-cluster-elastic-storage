@@ -62,4 +62,3 @@ resource "azurerm_ssh_public_key" "cc_public_ssh_key" {
 
   tags = var.azure_tags
 }
-

@@ -9,7 +9,6 @@ resource "azurerm_resource_group" "cc_rg" {
   tags = var.azure_tags
 }
 
-
 ######################################
 # Bootstrap the Rubrik Cloud Cluster #
 ###########################k##########
