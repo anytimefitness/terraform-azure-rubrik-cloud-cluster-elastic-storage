@@ -26,10 +26,7 @@ on:
     branches:
       - main
     paths:
-      - '**/**'
-      - '!.github/**'
-      - '!examples/**'
-      - '!**/README**'
+      - '**/*.tf'
 
 jobs:
   auto-semver:
