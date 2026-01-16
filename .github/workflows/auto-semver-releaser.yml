@@ -16,10 +16,7 @@ on:
     branches: 
       - main
     paths:
-      - '**/**'
-      - '!.github/**'
-      - '!examples/**'
-      - '!**/README**'
+      - '**/*.tf'
   pull_request_target:
     types:
       - closed
