@@ -1,11 +1,12 @@
 # Terraform Module - Azure Cloud Cluster Elastic Storage Deployment
 This module deploys a new Rubrik Cloud Cluster Elastic Storage (CCES) in Azure.
 
+> **Note:** This is a fork of the upstream repository. Releases are published through GitHub releases.
+
 ## Usage
 ```hcl
 module "rubrik_azure_cloud_cluster_elastic_storage" {
-  source  = "rubrikinc/rubrik-cloud-cluster-elastic-storage/azure"
-  version = "1.0.2"
+  source  = "github.com/<owner>/terraform-azure-rubrik-cloud-cluster-elastic-storage?ref=v1.1.0"
 
   admin_email           = "build@rubrik.com"
   admin_password        = "RubrikGoForward"
@@ -26,49 +27,12 @@ module "rubrik_azure_cloud_cluster_elastic_storage" {
 }
 ```
 
-## Changelog
-
-### v1.0.2
-* Make the Storage service endpoint of the VPC optional. The Storage endpoint is enabled by default, but it's possible
-  to not enable it by setting `azure_enable_subnet_storage_endpoint` module input variable to `false`.
-* Add support for automatically registering the Rubrik Cloud Cluster with Rubrik Security Cloud. To register the cluster
-  set the `register_cluster_with_rsc` module input variable to `true`.
-* NTP servers can now be specified using a FQDN. Previously they were required to be IP addresses, now both IP addresses
-  and FQDN are allowed.
-* Relax the version constraint for the Azure RM Terraform provider to `>=4.14.0`.
-* Bump the RSC (polaris) Terraform provider from version `~>1.1.1` to `>=1.1.3`.
-* Run `terraform fmt` on the module.
-
-### v1.0.1
-* Deprecate the `azure_subscription_id` module input variable in favor of provider configuration provided by the root
-  module.
-
-### v1.0.0
-* Remove hard-coded provider setup from the module.
-* Add `gen_docs.sh` script and update the Terraform documentation.
-* Fix SKU regular expression.
-* Bump RSC (polaris) Terraform provider to `1.1.1`.
-
-### v0.2.0
-* Initial stable release of the Terraform module for deploying Rubrik Cloud Cluster Elastic Storage (CCES) in Azure.
-* Support for deploying multi-node CCES clusters with configurable node count.
-* Automated Azure Storage Account and container creation with optional immutability features.
-* SSH key pair generation and secure storage in Azure Key Vault.
-* Network interface and VM provisioning with marketplace image support.
-* Automatic disk attachment for data, metadata, and cache storage (split disk support for CDM 9.2.2+).
-* Bootstrap integration using Polaris provider for automated cluster configuration.
-* Comprehensive variable validation and resource locking capabilities.
-* Support for custom Azure tags and resource group management.
-* Initial module development and testing.
-* Basic CCES deployment functionality.
-* Core Azure resource provisioning.
-
 ## Upgrading
-Before upgrading the module, be sure to read through the changelog to understand the changes in the new version and any
-upgrade instruction for the version you are upgrading to. 
+Before upgrading the module, be sure to check the GitHub releases page to understand the changes in the new version and any
+upgrade instructions for the version you are upgrading to. 
 
 To upgrade the module to a new version, use the following steps:
-1. Update the `version` field in the `module` block to the version you want to upgrade to, e.g. `version = "1.0.3"`.
+1. Update the `ref` parameter in the `source` field of the `module` block to the version tag you want to upgrade to, e.g. `ref=v1.0.3`.
 2. Run `terraform init --upgrade` to update the modules in your configuration.
 3. Run `terraform plan` and check the output carefully to ensure that there are no unexpected changes caused by the
    upgrade.
@@ -263,7 +227,6 @@ of the module can be disabled by setting the `azure_enable_subnet_storage_endpoi
 ## Additional Documentation
 * [Microsoft Azure CLI Installation](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
 * [Microsoft Azure CLI Authentication](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli)
-* [Terraform Module Registry](https://registry.terraform.io/modules/rubrikinc/rubrik-azure-cloud-cluster-elastic-storage)
 * [Terraform Module for AzureRM CLI Authentication](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/azure_cli)
 
 <!-- BEGIN_TF_DOCS -->
