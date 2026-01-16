@@ -14,7 +14,7 @@ on:
   pull_request:
     types: [opened, labeled, unlabeled]
     branches: 
-      - main
+      - master
     paths:
       - '**/**'
       - '!.github/**'
@@ -24,7 +24,7 @@ on:
     types:
       - closed
     branches:
-      - main
+      - master
     paths:
       - '**/**'
       - '!.github/**'
