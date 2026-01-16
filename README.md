@@ -1,7 +1,7 @@
 # Terraform Module - Azure Cloud Cluster Elastic Storage Deployment
 This module deploys a new Rubrik Cloud Cluster Elastic Storage (CCES) in Azure.
 
-> **Note:** This is a fork of the upstream repository. Releases are published through GitHub releases.
+> **Note:** This is a fork of the upstream repository. Releases are published through GitHub using reference tags.
 
 ## Usage
 ```hcl
