@@ -11,3 +11,4 @@ data "azurerm_subnet" "cces_subnet" {
 }
 
 data "azurerm_client_config" "current" {}
+
