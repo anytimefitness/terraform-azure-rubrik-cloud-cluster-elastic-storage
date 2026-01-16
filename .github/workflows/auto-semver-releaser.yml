@@ -14,14 +14,14 @@ on:
   pull_request:
     types: [opened, labeled, unlabeled]
     branches: 
-      - main
+      - master
     paths:
       - '**/*.tf'
   pull_request_target:
     types:
       - closed
     branches:
-      - main
+      - master
     paths:
       - '**/*.tf'
 

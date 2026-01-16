@@ -54,4 +54,3 @@ resource "azapi_update_resource" "cces_subnet_storage_endpoint" {
     }
   }
 }
-
