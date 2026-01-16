@@ -1,0 +1,37 @@
+name: Auto-Semver Releaser
+
+run-name: |
+  ${{ 
+    github.event.pull_request.state == 'open' && format( '🤖 Checking labels for PR #{0}', github.event.pull_request.number) ||
+    github.event_name == 'push' && format( 'Updating Major Version to Release {0}', github.ref_name) ||
+    contains(github.event.pull_request.merged, 'true') && format( '📦 Creating Release... PR #{0} Merged! 🎉', github.event.pull_request.number)
+  }}
+
+on:
+  push:
+    tags:
+      - "v*"
+  pull_request:
+    types: [opened, labeled, unlabeled]
+    branches: 
+      - main
+    paths:
+      - '**/**'
+      - '!.github/**'
+      - '!examples/**'
+      - '!**/README**'
+  pull_request_target:
+    types:
+      - closed
+    branches:
+      - main
+    paths:
+      - '**/**'
+      - '!.github/**'
+      - '!examples/**'
+      - '!**/README**'
+
+jobs:
+  auto-semver:
+    uses: anytimefitness/seb-gha-auto-semver-releaser/.github/workflows/auto-semver-releaser.yml@v0
+    secrets: inherit
