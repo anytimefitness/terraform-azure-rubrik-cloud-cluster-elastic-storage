@@ -22,10 +22,10 @@ resource "azurerm_key_vault" "cc_key_vault" {
   tags = var.azure_tags
 }
 
-resource "azurerm_key_vault_access_policy" "cc_key_vault_access_policy" {
+resource "azurerm_key_vault_access_policy" "cc_key_vault_access_policy_deployment_user" {
   key_vault_id = azurerm_key_vault.cc_key_vault.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = data.azurerm_client_config.current.object_id
+  object_id    = var.deployment_user_id
 
   key_permissions = [
     "Create",

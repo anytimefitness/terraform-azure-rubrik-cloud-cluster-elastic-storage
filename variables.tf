@@ -222,6 +222,11 @@ variable "skip_bootstrap_status_check" {
   default     = false
 }
 
+variable "deployment_user_id" {
+  description = "The ID of the user that will be granted access to the key vault. Needed to deploy the module"
+  type        = string
+}
+
 check "deprecations" {
   assert {
     condition     = var.azure_subscription_id == null
