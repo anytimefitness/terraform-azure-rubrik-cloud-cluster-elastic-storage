@@ -49,7 +49,7 @@ resource "azurerm_key_vault_secret" "cc_private_ssh_key" {
 
   depends_on = [
     azurerm_key_vault.cc_key_vault,
-    azurerm_key_vault_access_policy.cc_key_vault_access_policy
+    azurerm_key_vault_access_policy.cc_key_vault_access_policy_deployment_user
   ]
 }
 
