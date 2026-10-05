@@ -1,31 +1,30 @@
 name: Auto-Semver Releaser
 
 run-name: |
-  ${{ 
+  ${{
     github.event.pull_request.state == 'open' && format( '🤖 Checking labels for PR #{0}', github.event.pull_request.number) ||
     github.event_name == 'push' && format( 'Updating Major Version to Release {0}', github.ref_name) ||
     contains(github.event.pull_request.merged, 'true') && format( '📦 Creating Release... PR #{0} Merged! 🎉', github.event.pull_request.number)
   }}
-
 on:
   push:
     tags:
       - "v*"
   pull_request:
-    types: [opened, labeled, unlabeled]
-    branches: 
-      - master
-    paths:
-      - '**/*.tf'
+    types: [opened, reopened, edited, ready_for_review, labeled, unlabeled]
   pull_request_target:
     types:
       - closed
     branches:
-      - master
-    paths:
-      - '**/*.tf'
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   auto-semver:
-    uses: purpose-brands/gha-autosemver/.github/workflows/auto-semver-releaser.yml@v0
-    secrets: inherit
+    uses: purpose-brands/gha-autosemver/.github/workflows/auto-semver-releaser.yml@v1
+    secrets:
+      app_id: ${{ vars.SEB_GH_APP_ID_WRITE_ACCESS }}
+      app_private_key: ${{ secrets.SEB_GH_APP_KEY_WRITE_ACCESS }}
